@@ -4,7 +4,7 @@ table-->1
 
 customer:
 
-  token.no-->unique
+  token.no--> (p)
  passbook.no-->unique
 name
 address
