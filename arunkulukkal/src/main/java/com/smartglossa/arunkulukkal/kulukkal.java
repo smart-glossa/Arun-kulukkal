@@ -243,7 +243,7 @@ public class kulukkal extends HttpServlet {
 			response.getWriter().print(result);
 		}
 
-		else if (operation.equals("getPrizes")) {
+	 else if (operation.equals("getPrizes")) {
 			JSONObject result = new JSONObject();
 			int tno = Integer.parseInt(request.getParameter("tno"));
 			try {
