@@ -41,3 +41,59 @@ function addCustomer() {
     $("#import")[0].innerHTML = strVar;
 
 }
+$(document).on(
+	    "click",
+	    "#add",
+	    function() {
+
+	        var tno = $("#tno").val();
+	        var pnumber = $("#pnumber").val();
+	        var name = $("#name").val();
+	        var address = $("#address").val();
+	        var mnumber = $("#mnumber").val();
+	        var pid = $("#pid").val();
+	        
+
+	        if (tno == "") {
+	            $("#tno").focus().css("outline-color", "red");
+	            return;
+	        }
+	        if (pnumber == "") {
+	            $("#pnumber").focus().css("outline-color", "red");
+	            return;
+	        }
+	        if (name == "") {
+	            $("#name").focus().css("outline-color", "red");
+	            return;
+	        }
+	        if (address == "") {
+	            $("#address").focus().css("outline-color", "red");
+	            return;
+	        }
+	        if (mnumber == "") {
+	            $("#mnumber").focus().css("outline-color", "red");
+	            return;
+	        }
+	        if (pid == "") {
+	            $("#pid").focus().css("outline-color", "red");
+	            return;
+	        }
+	        
+
+	        var url = "/arunkulukkal/kulukkal?operation=addCustomer&tno=" +
+	            tno + "&pnumber= " + pnumber + " &name=" + name +
+	            " &address=" + address + " &mnumber=" + mnumber +
+	            "&pid=" + pid ;
+
+	        $.ajax({
+	            url: url,
+	            type: 'POST'
+
+	        }).done(function(result) {
+	            alert(result);
+
+	        })
+	        fail(function(result) {
+	            alert(result);
+	        });
+	    });
