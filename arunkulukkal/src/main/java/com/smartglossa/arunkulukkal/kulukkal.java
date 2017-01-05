@@ -40,7 +40,7 @@ public class kulukkal extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	  *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -53,14 +53,14 @@ public class kulukkal extends HttpServlet {
 
 			String address = request.getParameter("address");
 			String mnumber = request.getParameter("mnumber");
-
+			int pid = Integer.parseInt(request.getParameter("pid"));
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arunkulukkal", "root",
 						"root");
 				Statement statement = connection.createStatement();
 				String query = "insert into customer(tno,pnumber,name,address,mnumber) values(" + tno + ",'" + pnumber
-						+ "','" + name + "','" + address + "','" + mnumber + "')";
+						+ "','" + name + "','" + address + "','" + mnumber + "',"+pid+")";
 				statement.execute(query);
 				result.put("status", "Added Successfully");
 
@@ -266,12 +266,12 @@ public class kulukkal extends HttpServlet {
 		} else if (operation.equals("getPrizes")) {
 			JSONObject result = new JSONObject();
 			int tno = Integer.parseInt(request.getParameter("tno"));
-			try {
+ 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arunkulukkal", "root",
 						"root");
 				Statement statement = connection.createStatement();
-				String query = "select pid from winners where tno=" + tno + "  ";
+				String query = "select pid from customer where tno=" + tno + "  ";
 				ResultSet set = statement.executeQuery(query);
 				if (set.next()) {
 					int prizeid = set.getInt("pid");
