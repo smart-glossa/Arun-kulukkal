@@ -40,7 +40,7 @@ public class kulukkal extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	  *      response)
+	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -59,8 +59,8 @@ public class kulukkal extends HttpServlet {
 				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arunkulukkal", "root",
 						"root");
 				Statement statement = connection.createStatement();
-				String query = "insert into customer(tno,pnumber,name,address,mnumber) values(" + tno + ",'" + pnumber
-						+ "','" + name + "','" + address + "','" + mnumber + "',"+pid+")";
+				String query = "insert into customer(tno,pnumber,name,address,mnumber,pid) values(" + tno + ",'"
+						+ pnumber + "','" + name + "','" + address + "','" + mnumber + "'," + pid + ")";
 				statement.execute(query);
 				result.put("status", "Added Successfully");
 
@@ -79,6 +79,7 @@ public class kulukkal extends HttpServlet {
 
 			String address = request.getParameter("address");
 			String mnumber = request.getParameter("mnumber");
+			int pid = Integer.parseInt(request.getParameter("pid"));
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -86,7 +87,7 @@ public class kulukkal extends HttpServlet {
 						"root");
 				Statement statement = connection.createStatement();
 				String query = "update customer set pnumber='" + pnumber + "', name='" + name + "',address='" + address
-						+ "',mnumber='" + mnumber + "' where tno=" + tno;
+						+ "',mnumber='" + mnumber + "',pid='" + pid + "' where tno=" + tno;
 				statement.execute(query);
 				result.put("status", " Updated Successfully");
 
@@ -115,7 +116,7 @@ public class kulukkal extends HttpServlet {
 
 						obj.put("address", rs.getString("address"));
 						obj.put("mnumber", rs.getString("mnumber"));
-
+						obj.put("pid", rs.getString("pid"));
 						result.put(obj);
 
 					}
@@ -161,7 +162,7 @@ public class kulukkal extends HttpServlet {
 					result.put("pnumber", set.getString("pnumber"));
 					result.put("address", set.getString("address"));
 					result.put("mnumber", set.getString("mnumber"));
-
+					result.put("pid", set.getString("pid"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -185,7 +186,7 @@ public class kulukkal extends HttpServlet {
 					result.put("pnumber", set.getString("pnumber"));
 					result.put("address", set.getString("address"));
 					result.put("mnumber", set.getString("mnumber"));
-
+					result.put("pid", set.getString("pid"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -210,7 +211,7 @@ public class kulukkal extends HttpServlet {
 
 					result.put("address", set.getString("address"));
 					result.put("mnumber", set.getString("mnumber"));
-
+					result.put("pid", set.getString("pid"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -242,31 +243,10 @@ public class kulukkal extends HttpServlet {
 			response.getWriter().print(result);
 		}
 
-		else if (operation.equals("winners")) {
+		else if (operation.equals("getPrizes")) {
 			JSONObject result = new JSONObject();
-			int pid = Integer.parseInt(request.getParameter("pid"));
 			int tno = Integer.parseInt(request.getParameter("tno"));
-
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arunkulukkal", "root",
-						"root");
-				Statement statement = connection.createStatement();
-				String query = "insert into winners(pid,tno) values(" + pid + ",'" + tno + "')";
-				statement.execute(query);
-				result.put("status", "Added Successfully");
-
-			} catch (Exception e) {
-				result.put("message", "error");
-
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			response.getWriter().print(result);
-		} else if (operation.equals("getPrizes")) {
-			JSONObject result = new JSONObject();
-			int tno = Integer.parseInt(request.getParameter("tno"));
- 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arunkulukkal", "root",
 						"root");
