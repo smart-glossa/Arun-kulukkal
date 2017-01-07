@@ -6,13 +6,44 @@
         <title>Aruna Furniture</title>
         <script type="text/javascript" src=js/jquery.js></script>
     <script type="text/javascript" src=js/kulukkal.js></script>
+    <style>
+    #heading{
+    background-color:red;
+    font-size:50px;
+    }
+    #modules{
+    border-radius:0px;
+    margin-top:100px;
+    width:200px;
+    height:400px;
+    background-color:green;
+    float:left;
+    }
+    #import{
+    margin-left:100px;
+    float:left;
+    width:70%;
+    height:80%;
+    background-color:blue;
+    border-radius:10px;
+    }
+    #customer{
+    font-size:30px;
+    margin-left:30px;
+    cursor:pointer;
+    }
+    </style>
     </head>
     <body>
     <center>
-        <h1>Aruna Furniture kulukkal</h1>
+        <h1 id="heading">Aruna Furniture kulukkal</h1>
         </center>
+        <div id="modules">
         <div id="customer" onclick="addCustomer()">Customers</div>
-<div id="prizes" onclick="">Prizes</div>     
-<div id="import"></div>   
+<div id="prize" onclick="">Prizes</div> 
+</div>
+<div id="import1"></div>     
+<div id="import"></div> 
+ 
     </body>
 </html>

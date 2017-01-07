@@ -47,7 +47,7 @@ public class kulukkal extends HttpServlet {
 		String operation = request.getParameter("operation");
 		if (operation.equals("addCustomer")) {
 			JSONObject result = new JSONObject();
-			int tno = Integer.parseInt(request.getParameter("tno"));
+			int tno = Integer.parseInt(request.getParameter("sno"));
 			String pnumber = request.getParameter("pnumber");
 			String name = request.getParameter("name");
 
@@ -87,7 +87,7 @@ public class kulukkal extends HttpServlet {
 						"root");
 				Statement statement = connection.createStatement();
 				String query = "update customer set pnumber='" + pnumber + "', name='" + name + "',address='" + address
-						+ "',mnumber='" + mnumber + "',pid='" + pid + "' where tno=" + tno;
+						+ "',mnumber='" + mnumber + "',pid=" + pid + " where tno=" + tno;
 				statement.execute(query);
 				result.put("status", " Updated Successfully");
 
