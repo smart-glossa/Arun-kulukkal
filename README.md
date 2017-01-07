@@ -1,23 +1,21 @@
 # Arun-kulukkal
 
 table-->1
+prize details:
+
+prize id (p) int 
+prizes varchar
+
+table-->2
 
 customer:
 
-  token.no--> (p)
- passbook.no-->unique
-name
-address
-mobile.number
+  token.no--> (p) int
+ passbook.no-->unique varchar
+name varchar
+address varchar
+mobile.number varchar
+pid (f) int
 
-table-->2
-prize details:
 
-prize id (p)
-prizes
-
- table-->3
-Winners:
-
-prize.id--> (f)
-token.no-->(f)
+ 
