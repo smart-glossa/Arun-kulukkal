@@ -254,8 +254,9 @@ $(document)
         .done(
             function(result) {
                 var res = JSON.parse(result);
-                table += "<div class=\"addcustomer\">";
-                var table = "<table  style='border: 1px solid black' >"
+                var table = "";
+                table += "<div class=\"allcus\">";
+                table += "<table   >"
                 table += "<tr><th>Token.No</th><th>Passbook.No</th><th>Name</th><th>Address</th><th>Mobile Number</th><th>Prize Number</th></tr>"
                 for (var i = 0; i < res.length; i++) {
 
