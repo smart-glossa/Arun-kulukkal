@@ -241,9 +241,94 @@ public class kulukkal extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(result);
+		} else if (operation.equals("updatePrize")) {
+			JSONObject result = new JSONObject();
+			int pid = Integer.parseInt(request.getParameter("pid"));
+			String prizes = request.getParameter("prizes");
+
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arunkulukkal", "root",
+						"root");
+				Statement statement = connection.createStatement();
+				String query = "update prizes set prizes='" + prizes + "' where pid=" + pid;
+				statement.execute(query);
+				result.put("status", " Updated Successfully");
+
+			} catch (Exception e) {
+				result.put("message", "error");
+
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.getWriter().print(result);
+		} else if (operation.equals("getAllPrizes")) {
+			JSONArray result = new JSONArray();
+			{
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arunkulukkal",
+							"root", "root");
+					Statement statement = connection.createStatement();
+					String query = "select * from prizes";
+					ResultSet rs = statement.executeQuery(query);
+					while (rs.next()) {
+						JSONObject obj = new JSONObject();
+						obj.put("pid", rs.getInt("pid"));
+						obj.put("prizes", rs.getString("prizes"));
+
+						result.put(obj);
+
+					}
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				response.getWriter().print(result);
+			}
+		} else if (operation.equals("deletePrizes")) {
+			JSONObject result = new JSONObject();
+			int pid = Integer.parseInt(request.getParameter("pid"));
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arunkulukkal", "root",
+						"root");
+				Statement statement = connection.createStatement();
+				String query = "delete from prizes where pid=" + pid;
+				statement.execute(query);
+				result.put("status", "Deleted Successfully");
+
+			} catch (Exception e) {
+				result.put("status", "error");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.getWriter().print(result);
+		} else if (operation.equals("getOnePrizes")) {
+			JSONObject result = new JSONObject();
+			int pid = Integer.parseInt(request.getParameter("pid"));
+
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/arunkulukkal", "root",
+						"root");
+				Statement statement = connection.createStatement();
+				String query = "select * from prizes where pid=" + pid + "  ";
+				ResultSet set = statement.executeQuery(query);
+				if (set.next()) {
+					result.put("pid", set.getInt("pid"));
+					result.put("prizes", set.getString("prizes"));
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			response.getWriter().print(result);
+
 		}
 
-	 else if (operation.equals("getPrizes")) {
+		else if (operation.equals("getPrizes")) {
 			JSONObject result = new JSONObject();
 			int tno = Integer.parseInt(request.getParameter("tno"));
 			try {

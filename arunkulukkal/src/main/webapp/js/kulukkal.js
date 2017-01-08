@@ -22,22 +22,22 @@ function addcustomer(){
     strVar += "<table>";
     strVar += "<tr>";
    
-    strVar += "<\/td><td><input type=\"text\" id=\"sno\" placeholder=\"Token Number\"><\/td><\/tr>";
+    strVar += "<td><input type=\"text\" id=\"sno\" placeholder=\"Token Number\"><\/td><\/tr>";
     strVar += "<tr>";
     
-    strVar += "<\/td><td><input type=\"text\" id=\"pnumber\" placeholder=\"Pass Book Number\"><\/td><\/tr>";
+    strVar += "<td><input type=\"text\" id=\"pnumber\" placeholder=\"Pass Book Number\"><\/td><\/tr>";
     strVar += "<tr>";
     
-    strVar += "<\/td><td><input type=\"text\" id=\"name\" placeholder=\"Name\"><\/td><\/tr>";
+    strVar += "<td><input type=\"text\" id=\"name\" placeholder=\"Name\"><\/td><\/tr>";
     strVar += "<tr>";
     
-    strVar += "<\/td><td><textarea  id=\"address\" placeholder=\"Address\"><\/textarea><\/td><\/tr>";
+    strVar += "<td><textarea  id=\"address\" placeholder=\"Address\"><\/textarea><\/td><\/tr>";
     strVar += "<tr>";
     
-    strVar += "<\/td><td><input type=\"text\" id=\"mnumber\" maxlength=\"10\" placeholder=\"Mobile Number\"><\/td><\/tr>";
+    strVar += "<td><input type=\"text\" id=\"mnumber\" maxlength=\"10\" placeholder=\"Mobile Number\"><\/td><\/tr>";
     strVar += "<tr>";
    
-    strVar += "<\/td><td><input type=\"text\" id=\"pid\" placeholder=\"Prize Number\"><\/td><\/tr>";
+    strVar += "<td><input type=\"text\" id=\"pid\" placeholder=\"Prize Number\"><\/td><\/tr>";
    
     strVar += "<tr><td><input type=\"button\" value=\"add\" id=\"add\"><\/input></td><\/tr>";
     strVar += "<\/table>";
@@ -254,6 +254,7 @@ $(document)
         .done(
             function(result) {
                 var res = JSON.parse(result);
+                table += "<div class=\"addcustomer\">";
                 var table = "<table  style='border: 1px solid black' >"
                 table += "<tr><th>Token.No</th><th>Passbook.No</th><th>Name</th><th>Address</th><th>Mobile Number</th><th>Prize Number</th></tr>"
                 for (var i = 0; i < res.length; i++) {
@@ -268,7 +269,8 @@ $(document)
                     table += "<td><img src='images/delete.jpg' class='delete' ></td></tr>";
                 }
                 table += "</table>";
-                $(".addcustomer")[0].innerHTML = table;
+                table += "";
+                $("#import")[0].innerHTML = table;
             })
 };
 
@@ -285,20 +287,22 @@ $(document)
     strVar += "<td><input type=\"text\" id=\"tno\" placeholder=\"Token Number\"><\/td><\/tr>";
     strVar += "<tr>";
     
-    strVar += "<\/td><td><input type=\"text\" id=\"pnumber\" placeholder=\"Pass Book Number\"><\/td><\/tr>";
+    strVar += "<\/td><td><input type=\"text\" id=\"pnumber\" placeholder=\"Pass Book Number\" readonly=\"true\"><\/td><\/tr>";
     strVar += "<tr>";
     
-    strVar += "<\/td><td><input type=\"text\" id=\"name\" placeholder=\"Name\"><\/td><\/tr>";
+    strVar += "<\/td><td><input type=\"text\" id=\"name\" placeholder=\"Name\" readonly=\"true\"><\/td><\/tr>";
     strVar += "<tr>";
     
-    strVar += "<\/td><td><textarea  id=\"address\" placeholder=\"Address\"><\/textarea><\/td><\/tr>";
+    strVar += "<\/td><td><textarea  id=\"address\" placeholder=\"Address\" readonly=\"true\"><\/textarea><\/td><\/tr>";
     strVar += "<tr>";
     
-    strVar += "<\/td><td><input type=\"text\" id=\"mnumber\" maxlength=\"10\" placeholder=\"Mobile Number\"><\/td><\/tr>";
+    strVar += "<\/td><td><input type=\"text\" id=\"mnumber\" maxlength=\"10\" placeholder=\"Mobile Number\" readonly=\"true\"><\/td><\/tr>";
     strVar += "<tr>";
    
-    strVar += "<\/td><td><input type=\"text\" id=\"pid\" placeholder=\"Prize Number\"><\/td><\/tr>";
+    strVar += "<\/td><td><input type=\"text\" id=\"pid\" placeholder=\"Prize Number\" readonly=\"true\"><\/td><\/tr>";
+    strVar += "<tr>";
     
+    strVar += "<\/td><td><input type=\"text\" id=\"prizes\" placeholder=\"Prize\" readonly=\"true\"><\/td><\/tr>";
     strVar += "<\/table>";
     strVar += "<\/div>";
    
@@ -317,14 +321,12 @@ $(document)
     strVar += "<h1>Add Prizes<\/h1>";
     strVar += "<table>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Prize Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"pid\"><\/td><\/tr>";
+   
+    strVar += "<td><input type=\"text\" id=\"pid\"  placeholder=\"Prize Number\"><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Prizes";
-    strVar += "<\/td><td><input type=\"text\" id=\"pri\"><\/td><\/tr>";
-    strVar += "<tr><td><input type=\"button\" value=\"add\" id=\"ap\"><\/input></td><\/tr>";
+   
+    strVar += "<td><input type=\"text\" id=\"prizes\" placeholder=\"Prize\"><\/td><\/tr>";
+    strVar += "<tr><td><input type=\"button\" value=\"Add\" id=\"addpri\"><\/input></td><\/tr>";
     strVar += "<\/table>";
     strVar += "<\/div>";
    
@@ -332,3 +334,175 @@ $(document)
     $("#import")[0].innerHTML = strVar;
 	    
 	    }
+	    $(document).on(
+	    	    "click",
+	    	    "#addpri",
+	    	    function() {
+
+	    	        var pid = $("#pid").val();
+	    	        var prizes = $("#prizes").val();
+	    	        
+	    	        
+
+	    	        if (pid == "") {
+	    	            $("#pid").focus().css("outline-color", "red");
+	    	            return;
+	    	        }
+	    	        if (prizes == "") {
+	    	            $("#prizes").focus().css("outline-color", "red");
+	    	            return;
+	    	        }
+	    	        
+
+	    	        var url = "/arunkulukkal/kulukkal?operation=addPrize&pid=" +
+	    	            pid + "&prizes= " + prizes ;
+
+	    	        $.ajax({
+	    	            url: url,
+	    	            type: 'POST'
+
+	    	        }).done(function(result) {
+	    	            alert(result);
+
+	    	        })
+	    	        .fail(function(result) {
+	    	            alert(result);
+	    	        });
+	    	    });
+
+	    function updatepri() {
+	        // div.innerHTML = table;
+
+	        var strVar = "";
+	        strVar += "<div class=\"addcustomer\">";
+	        
+	        strVar += "<h1>Update Prizes<\/h1>";
+	        strVar += "<table>";
+	        strVar += "<tr>";
+	       
+	        strVar += "<td><input type=\"text\" id=\"pid\"  placeholder=\"Prize Number\"><\/td><\/tr>";
+	        strVar += "<tr>";
+	       
+	        strVar += "<td><input type=\"text\" id=\"prizes\" placeholder=\"Prize\"><\/td><\/tr>";
+	        strVar += "<tr><td><input type=\"button\" value=\"Update\" id=\"updatepri\"><\/input></td><\/tr>";
+	        strVar += "<\/table>";
+	        strVar += "<\/div>";
+	       
+	        strVar += "";
+	        $("#import")[0].innerHTML = strVar;
+	    	    
+	    	    }
+	    
+	    $(document).on(
+	    	    "click",
+	    	    "#updatepri",
+	    	    function() {
+
+	    	        var pid = $("#pid").val();
+	    	        var prizes = $("#prizes").val();
+	    	        
+	    	        
+
+	    	        if (pid == "") {
+	    	            $("#pid").focus().css("outline-color", "red");
+	    	            return;
+	    	        }
+	    	        if (prizes == "") {
+	    	            $("#prizes").focus().css("outline-color", "red");
+	    	            return;
+	    	        }
+	    	        
+
+	    	        var url = "/arunkulukkal/kulukkal?operation=updatePrize&pid=" +
+	    	            pid + "&prizes= " + prizes ;
+
+	    	        $.ajax({
+	    	            url: url,
+	    	            type: 'POST'
+
+	    	        }).done(function(result) {
+	    	            alert(result);
+
+	    	        })
+	    	        .fail(function(result) {
+	    	            alert(result);
+	    	        });
+	    	    });
+
+	    
+	    function getOnepri() {
+	        // div.innerHTML = table;
+
+	        var strVar = "";
+	        strVar += "<div class=\"addcustomer\">";
+	        
+	        strVar += "<h1>Single Prize Details <\/h1>";
+	        strVar += "<table>";
+	        strVar += "<tr>";
+	       
+	        strVar += "<td><input type=\"text\" id=\"pid\"  placeholder=\"Prize Number\"><\/td><\/tr>";
+	        strVar += "<tr>";
+	       
+	        strVar += "<td><input type=\"text\" id=\"prizes\" placeholder=\"Prize\"><\/td><\/tr>";
+	        
+	        strVar += "<\/table>";
+	        strVar += "<\/div>";
+	       
+	        strVar += "";
+	        $("#import")[0].innerHTML = strVar;
+	    	    
+	    	    }
+	    $(document)
+	    .on(
+	        'keyup',
+	        '#pid',
+	        function() {
+	            var pid = $('#pid').val();
+	            if (pid !== "") {
+
+	                var url = "/questionanswer/question?operation=getOnePrizes&pid=" +
+	                    pid;
+	                $.ajax({
+	                    url: url,
+	                    type: 'POST'
+	                }).done(function(result) {
+	                    var res = JSON.parse(result);
+	                    $('#pid').val(res.pid);
+	                    $('#prizes').val(res.prizes);
+	                    
+
+	                }).fail(function(result) {
+	                    alert(result);
+	                })
+	            } else {
+	                $('#pid').val("");
+	                $('#prizes').val("");
+	               
+	            }
+	        })
+	        
+	        
+	         function allpri() {
+    var url = "/arunkulukkal/kulukkal?operation=getAllPrizes";
+    $
+        .ajax({
+            url: url,
+            type: 'POST'
+        })
+        .done(
+            function(result) {
+                var res = JSON.parse(result);
+                var table = "<table  style='border: 1px solid black' >"
+                table += "<tr><th>Prize Number</th><th>Prize</th></tr>"
+                for (var i = 0; i < res.length; i++) {
+
+                    table += "<td>" + res[i].pid + "</td>"
+                    table += "<td>" + res[i].prizes + "</td>"
+                   
+                   
+                    table += "<td><img src='images/delete.jpg' class='delete' ></td></tr>";
+                }
+                table += "</table>";
+                $("#import")[0].innerHTML = table;
+            })
+};
