@@ -8,15 +8,15 @@
     <script type="text/javascript" src=js/kulukkal.js></script>
     <style>
     #heading{
-    background-color:red;
+    background-color:;
     font-size:50px;
     }
     #modules{
     border-radius:0px;
-    margin-top:100px;
+    margin-top:0px;
     width:200px;
     height:400px;
-    background-color:green;
+    background-color:;
     float:left;
     }
     #import{
@@ -24,26 +24,129 @@
     float:left;
     width:70%;
     height:80%;
-    background-color:blue;
+    background-color:;
     border-radius:10px;
     }
     #customer{
-    font-size:30px;
-    margin-left:30px;
+    font-size:40px;
+    margin-left:10px;
     cursor:pointer;
+    background-color:;
+    margin-top:20px;
+    border-radius:20px;
     }
+    #addPrizes{
+    font-size:40px;
+    margin-left:10px;
+    cursor:pointer;
+    background-color:;
+    margin-top:20px;
+    border-radius:20px;
+    
+    }
+    
+    input{
+  margin-left:25%;
+   font-size:170%;
+   margin-top:5%;
+    
+    }
+    tr{
+   
+    }
+    textarea{
+     margin-left:25%;
+   font-size:210%;
+   margin-top:5%;
+    }
+    .addcustomer{
+    background-color:;
+    width:50%;
+    height:80%;
+    margin-left:25%;
+    margin-top:5%;
+    }
+    #pp{
+    margin-left:40px;
+    }
+    .dropdown {
+     background-color: ;
+  
+    position: relative;
+    display: inline-block;
+  float: left;
+   margin-right: 400px;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: bolder;
+    font-family: cursive;
+    border-radius: 10px;
+    cursor: default;
+    float: left;
+    width: 250px;
+    height: 30px:
+   
+}
+.dropdown:hover{
+background-color:black;
+color:white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 10px;
+}
+
+.dropdown:hover .dropdown-content {
+margin-left:250px;
+    display: block;
+cursor: pointer;
+background-color:black;
+color:white;
+margin-top:-50px;
+}
     </style>
     </head>
     <body>
     <center>
         <h1 id="heading">Aruna Furniture kulukkal</h1>
         </center>
+        
         <div id="modules">
-        <div id="customer" onclick="addCustomer()">Customers</div>
-<div id="prize" onclick="">Prizes</div> 
+        <div class="dropdown">
+        <div id="customer" ><span>Customers</span></div>
+        <div class="dropdown-content">
+      <p id="" onclick="addcustomer()">Add Customer</p>
+      <p id="" onclick="updatecustomer()">Update Customer</p>
+      <p id="" onclick="getone()">Single Customer Details</p>
+      <p id="" onclick="allcustomer()">All Customer Details</p>
+    </div>
+    </div>
+     <div class="dropdown">
+<div id="addPrizes" ><p id="pp"><span>Prizes</span></p></div> 
+
+<div class="dropdown-content">
+
+      <p id="" onclick="addpri()">Add Prizes</p>
+      <p id="" onclick=""">Update Prizes</p>
+      <p id="" onclick="">Single Prize Details</p>
+      <p id="" onclick="">All Prize Details</p>
+    </div>
 </div>
-<div id="import1"></div>     
-<div id="import"></div> 
+ </div>
+<div id="import1"></div>  
+  
+<div id="import">
+<div id="addcustomer">
+<center><h1 id="heading">Check Prizes</h1></center>
+<input type="text" placeholder="Token Number" id="tno">
+<input type="text" placeholder="Prize" id="prizes" readonly="true">
+</div>
+</div> 
  
     </body>
 </html>

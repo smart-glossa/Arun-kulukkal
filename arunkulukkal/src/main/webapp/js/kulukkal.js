@@ -8,45 +8,36 @@ $(document).on(
     strVar += "<div id=\"getAllCustomers\" onclick=\"allcustomer()\">get all<\/div>";
     strVar += "<div id=\"getOneCustomer\">Get One Customers<\/div>";
     var strVar = "";
-    $("#import1")[0].innerHTML = strVar;
+    $("#subHeading")[0].innerHTML = strVar;
     
 	    });
-function addCustomer() {
+function addcustomer(){ 
 
     // div.innerHTML = table;
 
     var strVar = "";
-    strVar += "<div id=\"addCustomers\">Add Customers<\/div>";
-    strVar += "<div id=\"updateCustomers\">Update Customers<\/div>";
-    strVar += "<div id=\"getAllCustomers\" onclick=\"allcustomer()\">get all<\/div>";
-    strVar += "<div id=\"getOneCustomer\">Get One Customers<\/div>";
+   
     strVar += "<div class=\"addcustomer\">";
     strVar += "<h1>Add Customers<\/h1>";
     strVar += "<table>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Token Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"sno\"><\/td><\/tr>";
+   
+    strVar += "<\/td><td><input type=\"text\" id=\"sno\" placeholder=\"Token Number\"><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Pass Book Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"pnumber\"><\/td><\/tr>";
+    
+    strVar += "<\/td><td><input type=\"text\" id=\"pnumber\" placeholder=\"Pass Book Number\"><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "name";
-    strVar += "<\/td><td><input type=\"text\" id=\"name\"><\/td><\/tr>";
+    
+    strVar += "<\/td><td><input type=\"text\" id=\"name\" placeholder=\"Name\"><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Address";
-    strVar += "<\/td><td><input type=\"text\" id=\"address\" maxlength=\"10\"><\/td><\/tr>";
+    
+    strVar += "<\/td><td><textarea  id=\"address\" placeholder=\"Address\"><\/textarea><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Mobile Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"mnumber\" maxlength=\"10\"><\/td><\/tr>";
+    
+    strVar += "<\/td><td><input type=\"text\" id=\"mnumber\" maxlength=\"10\" placeholder=\"Mobile Number\"><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Prize Id";
-    strVar += "<\/td><td><input type=\"text\" id=\"pid\"><\/td><\/tr>";
+   
+    strVar += "<\/td><td><input type=\"text\" id=\"pid\" placeholder=\"Prize Number\"><\/td><\/tr>";
    
     strVar += "<tr><td><input type=\"button\" value=\"add\" id=\"add\"><\/input></td><\/tr>";
     strVar += "<\/table>";
@@ -55,13 +46,13 @@ function addCustomer() {
     strVar += "";
     $("#import")[0].innerHTML = strVar;
 
-}
+	    }
 $(document).on(
 	    "click",
 	    "#add",
 	    function() {
 
-	        var tno = $("#tno").val();
+	        var sno = $("#sno").val();
 	        var pnumber = $("#pnumber").val();
 	        var name = $("#name").val();
 	        var address = $("#address").val();
@@ -69,8 +60,8 @@ $(document).on(
 	        var pid = $("#pid").val();
 	        
 
-	        if (tno == "") {
-	            $("#tno").focus().css("outline-color", "red");
+	        if (sno == "") {
+	            $("#sno").focus().css("outline-color", "red");
 	            return;
 	        }
 	        if (pnumber == "") {
@@ -95,8 +86,8 @@ $(document).on(
 	        }
 	        
 
-	        var url = "/arunkulukkal/kulukkal?operation=addCustomer&tno=" +
-	            tno + "&pnumber= " + pnumber + " &name=" + name +
+	        var url = "/arunkulukkal/kulukkal?operation=addCustomer&sno=" +
+	            sno + "&pnumber= " + pnumber + " &name=" + name +
 	            " &address=" + address + " &mnumber=" + mnumber +
 	            "&pid=" + pid ;
 
@@ -108,15 +99,13 @@ $(document).on(
 	            alert(result);
 
 	        })
-	        fail(function(result) {
+	        .fail(function(result) {
 	            alert(result);
 	        });
 	    });
 
-$(document).on(
-	    "click",
-	    "#updateCustomers",
-	    function() {
+
+	    function updatecustomer() {
     // div.innerHTML = table;
 
     var strVar = "";
@@ -124,30 +113,25 @@ $(document).on(
     strVar += "<h1>Update Customers<\/h1>";
     strVar += "<table>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Token Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"tno\"><\/td><\/tr>";
-    strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Pass Book Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"pnumber\"><\/td><\/tr>";
-    strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "name";
-    strVar += "<\/td><td><input type=\"text\" id=\"name\"><\/td><\/tr>";
-    strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Address";
-    strVar += "<\/td><td><input type=\"text\" id=\"address\" maxlength=\"10\"><\/td><\/tr>";
-    strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Mobile Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"mnumber\" maxlength=\"10\"><\/td><\/tr>";
-    strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Prize Id";
-    strVar += "<\/td><td><input type=\"text\" id=\"pid\"><\/td><\/tr>";
    
+    
+    strVar += "<td><input type=\"text\" id=\"tno\" placeholder=\"Token Number\"><\/td><\/tr>";
+    strVar += "<tr>";
+    
+    strVar += "<\/td><td><input type=\"text\" id=\"pnumber\" placeholder=\"Pass Book Number\"><\/td><\/tr>";
+    strVar += "<tr>";
+    
+    strVar += "<\/td><td><input type=\"text\" id=\"name\" placeholder=\"Name\"><\/td><\/tr>";
+    strVar += "<tr>";
+    
+    strVar += "<\/td><td><textarea  id=\"address\" placeholder=\"Address\"><\/textarea><\/td><\/tr>";
+    strVar += "<tr>";
+    
+    strVar += "<\/td><td><input type=\"text\" id=\"mnumber\" maxlength=\"10\" placeholder=\"Mobile Number\"><\/td><\/tr>";
+    strVar += "<tr>";
+   
+    strVar += "<\/td><td><input type=\"text\" id=\"pid\" placeholder=\"Prize Number\"><\/td><\/tr>";
+    
     strVar += "<tr><td><input type=\"button\" value=\"update\" id=\"update\"><\/input></td><\/tr>";
     strVar += "<\/table>";
     strVar += "<\/div>";
@@ -155,7 +139,7 @@ $(document).on(
     strVar += "";
     $("#import")[0].innerHTML = strVar;
 
-})
+}
 $(document).on(
 	    "click",
 	    "#update",
@@ -284,15 +268,13 @@ $(document)
                     table += "<td><img src='images/delete.jpg' class='delete' ></td></tr>";
                 }
                 table += "</table>";
-                $("#import")[0].innerHTML = table;
+                $(".addcustomer")[0].innerHTML = table;
             })
 };
 
 
-$(document).on(
-	    "click",
-	    "#getOneCustomer",
-	    function() {
+
+	    function getone() {
     // div.innerHTML = table;
 
     var strVar = "";
@@ -300,41 +282,53 @@ $(document).on(
     strVar += "<h1>Get One Customer<\/h1>";
     strVar += "<table>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Token Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"tno\"><\/td><\/tr>";
+    strVar += "<td><input type=\"text\" id=\"tno\" placeholder=\"Token Number\"><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Pass Book Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"pnumber\"><\/td><\/tr>";
+    
+    strVar += "<\/td><td><input type=\"text\" id=\"pnumber\" placeholder=\"Pass Book Number\"><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "name";
-    strVar += "<\/td><td><input type=\"text\" id=\"name\"><\/td><\/tr>";
+    
+    strVar += "<\/td><td><input type=\"text\" id=\"name\" placeholder=\"Name\"><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Address";
-    strVar += "<\/td><td><input type=\"text\" id=\"address\" ><\/td><\/tr>";
+    
+    strVar += "<\/td><td><textarea  id=\"address\" placeholder=\"Address\"><\/textarea><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Mobile Number";
-    strVar += "<\/td><td><input type=\"text\" id=\"mnumber\" maxlength=\"10\"><\/td><\/tr>";
+    
+    strVar += "<\/td><td><input type=\"text\" id=\"mnumber\" maxlength=\"10\" placeholder=\"Mobile Number\"><\/td><\/tr>";
     strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Prize Id";
-    strVar += "<\/td><td><input type=\"text\" id=\"pid\"><\/td><\/tr>";
-    strVar += "<tr>";
-    strVar += "<td>";
-    strVar += "Prize";
-    strVar += "<\/td><td><input type=\"text\" id=\"prizes\"><\/td><\/tr>";
    
-   
+    strVar += "<\/td><td><input type=\"text\" id=\"pid\" placeholder=\"Prize Number\"><\/td><\/tr>";
+    
     strVar += "<\/table>";
     strVar += "<\/div>";
    
     strVar += "";
     $("#import")[0].innerHTML = strVar;
 
-})
+}
 
 
+	    function addpri() {
+    // div.innerHTML = table;
+
+    var strVar = "";
+    strVar += "<div class=\"addcustomer\">";
+    
+    strVar += "<h1>Add Prizes<\/h1>";
+    strVar += "<table>";
+    strVar += "<tr>";
+    strVar += "<td>";
+    strVar += "Prize Number";
+    strVar += "<\/td><td><input type=\"text\" id=\"pid\"><\/td><\/tr>";
+    strVar += "<tr>";
+    strVar += "<td>";
+    strVar += "Prizes";
+    strVar += "<\/td><td><input type=\"text\" id=\"pri\"><\/td><\/tr>";
+    strVar += "<tr><td><input type=\"button\" value=\"add\" id=\"ap\"><\/input></td><\/tr>";
+    strVar += "<\/table>";
+    strVar += "<\/div>";
+   
+    strVar += "";
+    $("#import")[0].innerHTML = strVar;
+	    
+	    }
